@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { font } from ".";
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -21,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
 
-    line-height: 1.5;
+    ${font.base};
     -webkit-font-smoothing: antialiased;
 
   }
