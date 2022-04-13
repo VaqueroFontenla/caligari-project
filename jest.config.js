@@ -4,8 +4,8 @@ const createJestConfig = nextJest({ dir });
 
 const customJestConfig = {
   moduleNameMapper: {
-    "^ui/(.*)$": "<rootDir>/src/ui/$1",
-    "^core/(.*)$": "<rootDir>/src/core/$1",
+    "^ui/(.*)$": "<rootDir>/ui/$1",
+    "^core/(.*)$": "<rootDir>/core/$1",
   },
   verbose: true,
 };
