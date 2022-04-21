@@ -140,8 +140,7 @@ const generateFontSize = (value: TypiValue) => {
 export const font = {
   "3xl": generateResponsiveFontSize(typi["3xl"]),
   xxl: generateResponsiveFontSize(typi.xxl),
-  xlBebas: generateResponsiveFontSize(typi.xlBebas),
-  xlLato: generateResponsiveFontSize(typi.xlLato),
+  xl: generateResponsiveFontSize(typi.xl),
   l: generateResponsiveFontSize(typi.l),
   base: generateResponsiveFontSize(typi.base),
   m: generateResponsiveFontSize(typi.m),
