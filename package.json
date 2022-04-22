@@ -12,7 +12,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "next": "12.1.4",
+    "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "styled-components": "^5.3.5"
@@ -28,7 +28,7 @@
     "@storybook/react": "^6.4.22",
     "@storybook/testing-library": "^0.0.11",
     "@types/node": "17.0.25",
-    "@types/react": "18.0.5",
+    "@types/react": "^18.0.6",
     "@types/react-dom": "18.0.1",
     "@types/styled-components": "^5.1.25",
     "babel-loader": "^8.2.5",

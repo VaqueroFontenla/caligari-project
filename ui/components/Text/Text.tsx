@@ -13,7 +13,6 @@ export interface TextProps {
   color?: Color;
   size?: Size;
   weight?: Weight;
-  withAsterisk?: boolean;
 }
 
 export const Text = styled.span<TextProps>`

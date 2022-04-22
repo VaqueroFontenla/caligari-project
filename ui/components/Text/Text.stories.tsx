@@ -10,3 +10,7 @@ export default {
 export const DefaultText: ComponentStory<typeof Text> = () => (
   <Text>Cariño</Text>
 );
+
+export const HighlightText: ComponentStory<typeof Text> = () => (
+  <Text weight="bold">Cariño</Text>
+);
