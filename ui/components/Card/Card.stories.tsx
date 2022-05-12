@@ -4,7 +4,7 @@ import { Card } from "./Card";
 import styled from "styled-components";
 
 export default {
-  title: "Card",
+  title: "Components/Card",
   component: Card,
 } as ComponentMeta<typeof Card>;
 
