@@ -1,4 +1,6 @@
-import { Card, CardMedia, Rating, Typography } from '@mui/material'
+import { Card, CardMedia, Rating, Typography, Tooltip, Fab, useTheme } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { useToggle } from '@/hooks/useToggle'
 import { Inn } from '@/models/Inn.model'
 import {
   CardInfoWrapper,
@@ -6,36 +8,57 @@ import {
   LabelFeatureWrapper,
   LabelFeaturesWrapper,
   LabelRatingWrapper,
+  CardExtraInfoWrapper,
+  CardMainInfoWrapper,
+  CaligariLabels,
 } from './InnCard.styles'
 
 interface InnCardProps {
   inn: Inn
 }
 export const InnCard: React.FC<InnCardProps> = ({ inn }) => {
+  const theme = useTheme()
   const { image, name, rating, description, address, city, features } = inn
+  const { isVisible: isExtraInfoVisible, toggle } = useToggle()
   return (
-    <Card>
+    <Card sx={{ transition: 'all 0.3s 0s ease-in' }}>
       <CardMediaWrapper>
         <CardMedia component="img" height="230" image={image} alt={`${name} image`} />
         <LabelRatingWrapper>
           <Rating defaultValue={rating} size="small" />
         </LabelRatingWrapper>
       </CardMediaWrapper>
-      <CardInfoWrapper>
-        <Typography variant="body1" fontWeight="bold">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" mb={2}>
-          {`${address}, ${city}`}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
-        <LabelFeaturesWrapper>
-          {features.map((feature) => (
-            <LabelFeatureWrapper key={feature.id}>{feature.name}</LabelFeatureWrapper>
-          ))}
-        </LabelFeaturesWrapper>
+      <CardInfoWrapper isExtraInfoVisible={isExtraInfoVisible}>
+        <CardMainInfoWrapper>
+          <Typography variant="body1" fontWeight="bold">
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" mb={2}>
+            {`${address}, ${city}`}
+          </Typography>
+          <Tooltip arrow title="Mostrar más">
+            <Fab
+              onClick={toggle}
+              size="small"
+              color="secondary"
+              aria-label="Mostrar más"
+              sx={{ position: 'absolute', right: '5%', bottom: '10%' }}
+            >
+              <ExpandMoreIcon />
+            </Fab>
+          </Tooltip>
+        </CardMainInfoWrapper>
+        <CardExtraInfoWrapper>
+          <Typography variant="body2" color="text.secondary" mb={2}>
+            {description}
+          </Typography>
+          <CaligariLabels variant="body2">Etiquetas Caligari</CaligariLabels>
+          <LabelFeaturesWrapper>
+            {features.map((feature) => (
+              <LabelFeatureWrapper key={feature.id}>{feature.name}</LabelFeatureWrapper>
+            ))}
+          </LabelFeaturesWrapper>
+        </CardExtraInfoWrapper>
       </CardInfoWrapper>
     </Card>
   )

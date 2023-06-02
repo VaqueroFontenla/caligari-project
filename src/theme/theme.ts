@@ -1,15 +1,14 @@
 import { createTheme, lighten } from '@mui/material'
 
 const themeColors = {
-  primary: '#223354',
-  secondary: '#F8F8F8',
+  primary: '#555555',
+  secondary: '#CDF3E1',
   success: '#57CA22',
   warning: '#FFA319',
   error: '#FF1943',
   info: '#33C2FF',
   black: '#223354',
   white: '#ffffff',
-  primaryAlt: '#000C57',
   bodyBg: '#F8F8F8',
 }
 
@@ -26,6 +25,7 @@ export const theme = createTheme({
     secondary: {
       main: themeColors.secondary,
     },
+    background: { default: themeColors.bodyBg },
   },
   typography: {
     fontFamily:
