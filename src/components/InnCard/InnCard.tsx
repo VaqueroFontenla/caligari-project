@@ -5,13 +5,13 @@ import { Inn } from '@/models/Inn.model'
 import {
   CardInfoWrapper,
   CardMediaWrapper,
-  LabelFeatureWrapper,
-  LabelFeaturesWrapper,
+  CaligariLabelsWrapper,
   LabelRatingWrapper,
   CardExtraInfoWrapper,
   CardMainInfoWrapper,
-  CaligariLabels,
+  CaligariLabelsText,
 } from './InnCard.styles'
+import { CaligariLabel } from '../CaligariLabel/CaligariLabel'
 
 interface InnCardProps {
   inn: Inn
@@ -52,12 +52,12 @@ export const InnCard: React.FC<InnCardProps> = ({ inn }) => {
           <Typography variant="body2" color="text.secondary" mb={2}>
             {description}
           </Typography>
-          <CaligariLabels variant="body2">Etiquetas Caligari</CaligariLabels>
-          <LabelFeaturesWrapper>
+          <CaligariLabelsText>Etiquetas Caligari</CaligariLabelsText>
+          <CaligariLabelsWrapper>
             {features.map((feature) => (
-              <LabelFeatureWrapper key={feature.id}>{feature.name}</LabelFeatureWrapper>
+              <CaligariLabel key={feature.id} caligariLabel={feature} />
             ))}
-          </LabelFeaturesWrapper>
+          </CaligariLabelsWrapper>
         </CardExtraInfoWrapper>
       </CardInfoWrapper>
     </Card>

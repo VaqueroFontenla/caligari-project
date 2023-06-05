@@ -36,7 +36,7 @@ export const CardExtraInfoWrapper = styled(Box)`
   overflow: hidden;
 `
 
-export const LabelFeaturesWrapper = styled(Box)(
+export const CaligariLabelsWrapper = styled(Box)(
   ({ theme }) => `
     display: flex;
     flex-wrap: wrap;
@@ -45,19 +45,7 @@ export const LabelFeaturesWrapper = styled(Box)(
   `
 )
 
-export const LabelFeatureWrapper = styled(Box)(
-  ({ theme }) => `
-    display: grid;
-    grid-template-columns: auto 1fr;
-    font-size: ${theme.spacing(3)};
-    font-weight: bold;
-    padding: ${theme.spacing(1)} ${theme.spacing(2)};
-    background-color: ${theme.palette.background.default};
-    border-radius:  ${theme.spacing(4)};
-  `
-)
-
-export const CaligariLabels = styled('span')(
+export const CaligariLabelsText = styled('span')(
   ({ theme }) => `
   display: flex;
   align-items: center;
@@ -66,7 +54,7 @@ export const CaligariLabels = styled('span')(
   ::after {
     content: '';
     height: 1px;
-    background-color: silver;
+   background-color: ${theme.palette.primary.main};
     flex-grow: 1;
     margin-left:${theme.spacing(4)};
   }
