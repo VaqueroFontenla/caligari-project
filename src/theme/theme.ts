@@ -1,6 +1,14 @@
-import { createTheme, lighten } from '@mui/material'
+import { PaletteColorOptions, createTheme, lighten } from '@mui/material'
+declare module '@mui/material/styles/createPalette' {
+  interface Palette {
+    boxShadow: Palette['primary']
+  }
 
-const themeColors = {
+  interface PaletteOptions {
+    boxShadow?: PaletteOptions['primary']
+  }
+}
+export const themeColors = {
   primary: '#555555',
   secondary: '#CDF3E1',
   success: '#57CA22',
@@ -10,6 +18,8 @@ const themeColors = {
   black: '#223354',
   white: '#ffffff',
   bodyBg: '#F8F8F8',
+  boxShadow:
+    '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
 }
 
 export const theme = createTheme({
@@ -26,6 +36,7 @@ export const theme = createTheme({
       main: themeColors.secondary,
     },
     background: { default: themeColors.bodyBg },
+    boxShadow: { main: themeColors.boxShadow },
   },
   typography: {
     fontFamily:
@@ -35,6 +46,15 @@ export const theme = createTheme({
     },
   },
   spacing: 4,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 768,
+      md: 1024,
+      lg: 1440,
+      xl: 1920,
+    },
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: {

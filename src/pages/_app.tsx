@@ -1,5 +1,9 @@
 import type { AppProps } from 'next/app'
 import { Open_Sans } from 'next/font/google'
+import { theme } from 'theme/theme'
+import { ThemeProvider } from '@emotion/react'
+import { CssBaseline } from '@mui/material'
+import { Header } from '../components'
 
 const open_sans = Open_Sans({
   weight: ['400', '700'],
@@ -10,8 +14,14 @@ const open_sans = Open_Sans({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={open_sans.className}>
-      <Component {...pageProps} />
-    </main>
+    <div className={open_sans.className}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
+    </div>
   )
 }
