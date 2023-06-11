@@ -3,7 +3,7 @@ import { Open_Sans } from 'next/font/google'
 import { theme } from 'theme/theme'
 import { ThemeProvider } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
-import { Header } from '../components'
+import { Header, Footer } from '../components'
 
 const open_sans = Open_Sans({
   weight: ['400', '700'],
@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <main>
           <Component {...pageProps} />
         </main>
+        <Footer />
       </ThemeProvider>
     </div>
   )
