@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Open_Sans } from 'next/font/google'
 import { Layout } from '../components'
+import { Inns } from 'views/Inns/Inns'
 
 const open_sans = Open_Sans({ weight: '400', subsets: ['latin'] })
 
@@ -15,6 +16,7 @@ export default function Home() {
       </Head>
       <Layout>
         <h1>Proyecto caligari</h1>
+        <Inns />
       </Layout>
     </>
   )

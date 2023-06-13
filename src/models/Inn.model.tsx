@@ -17,3 +17,5 @@ export interface Inn {
   features: Feature[]
   image?: string
 }
+
+export interface InnsQueryParams {}
