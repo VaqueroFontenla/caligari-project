@@ -7,6 +7,6 @@ export const Layout = styled('main')(
   margin-top: 80px; /* Header height*/
   margin-left: auto;
   margin-right: auto;
-  padding: ${theme.spacing(8)} ${theme.spacing(4)};
+  padding: ${theme.spacing(8)} ${theme.spacing(16)};
 `
 )
