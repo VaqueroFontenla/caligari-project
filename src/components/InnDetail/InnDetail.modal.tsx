@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { Dialog, DialogContent, DialogTitle, Typography, Box } from '@mui/material'
+import { Dialog, DialogContent, DialogTitle, Typography, Box, Slide } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { Inn } from '@/models/Inn.model'
 import { CaligariLabelsText, InnFeaturesWrapper } from './InnDetail.styles'
-import { CaligariLabel } from '..'
+import { CaligariLabel, Transition } from '..'
 
 interface InnDetailModalProps {
   inn: Inn
@@ -14,7 +14,7 @@ interface InnDetailModalProps {
 export const InnDetailModal: FC<InnDetailModalProps> = ({ inn, open, onClose }) => {
   const { name, address, city, features, description } = inn
   return (
-    <Dialog fullWidth maxWidth="md" open={open} onClose={onClose}>
+    <Dialog fullWidth maxWidth="md" open={open} onClose={onClose} TransitionComponent={Transition}>
       <DialogTitle
         sx={{
           display: 'flex',
