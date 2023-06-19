@@ -3,7 +3,7 @@ import { styled } from '@mui/material'
 export const Layout = styled('main')(
   ({ theme }) => `
   min-height: calc(100vh - 80px);
-  max-width: ${theme.breakpoints.values.lg};
+  max-width: ${theme.breakpoints.values.lg}px;
   margin-top: 80px; /* Header height*/
   margin-left: auto;
   margin-right: auto;
