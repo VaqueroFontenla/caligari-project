@@ -1,6 +1,6 @@
 import { InnCard } from '@/components/index'
 import { useInns } from '@/hooks/useInns'
-import { StyledInnsList } from './InnsListstyles'
+import { StyledInnsList } from './InnsList.styles'
 
 export const InnsList = () => {
   const { inns, innsLoading, innsError } = useInns()

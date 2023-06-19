@@ -5,7 +5,8 @@
       "@/components/*": ["components/*"],
       "@/models/*": ["models/*"],
       "@/hooks/*": ["hooks/*"],
-      "@/mocks/*": ["mocks/*"]
+      "@/mocks/*": ["mocks/*"],
+      "@/views/*": ["views/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
