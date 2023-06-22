@@ -13,7 +13,7 @@ export const InnCard: React.FC<InnCardProps> = ({ inn }) => {
   const { isVisible, toggle } = useToggle()
   return (
     <>
-      <Card sx={{ transition: 'all 0.3s 0s ease-in' }}>
+      <Card sx={{ transition: 'all 0.3s 0s ease-in', overflow: 'visible' }}>
         <CardMediaWrapper>
           <CardMedia component="img" height="230" image={image} alt={`${name} image`} />
           <LabelRatingWrapper>

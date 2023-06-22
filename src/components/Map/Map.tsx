@@ -1,8 +1,9 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'utils/dynamicImportsLeaflet'
+import { TileLayer, Marker, Popup } from 'utils/dynamicImportsLeaflet'
+import { StyledMapContainer } from './Map.styles'
 
 export const Map = () => {
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+    <StyledMapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -12,7 +13,7 @@ export const Map = () => {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-    </MapContainer>
+    </StyledMapContainer>
   )
 }
 
