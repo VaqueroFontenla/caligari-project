@@ -1,18 +1,27 @@
-import { TileLayer, Marker, Popup } from 'utils/dynamicImportsLeaflet'
+import { FC } from 'react'
+import { TileLayer, Marker } from 'utils/dynamicImportsLeaflet'
 import { StyledMapContainer } from './Map.styles'
+import { Inn } from '@/models/Inn.model'
+import { InnCard } from '../InnCard/InnCard'
+import { Popup } from './_components/Popup/Popup'
 
-export const Map = () => {
+interface MapProps {
+  inns?: Inn[]
+}
+
+export const Map: FC<MapProps> = ({ inns }) => {
   return (
-    <StyledMapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+    <StyledMapContainer center={[40.417, -3.7038]} zoom={13} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {inns &&
+        inns.map((inn) => (
+          <Marker position={[inn.lat, inn.lon]} key={inn.id}>
+            <Popup inn={inn} />
+          </Marker>
+        ))}
     </StyledMapContainer>
   )
 }

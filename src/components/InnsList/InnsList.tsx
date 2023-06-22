@@ -1,9 +1,12 @@
+import { FC } from 'react'
 import { InnCard } from '@/components/index'
-import { useInns } from '@/hooks/useInns'
 import { StyledInnsList } from './InnsList.styles'
+import { Inn } from '@/models/Inn.model'
 
-export const InnsList = () => {
-  const { inns, innsLoading, innsError } = useInns()
+interface InnsListProps {
+  inns?: Inn[]
+}
+export const InnsList: FC<InnsListProps> = ({ inns }) => {
   return (
     <>
       {inns && (

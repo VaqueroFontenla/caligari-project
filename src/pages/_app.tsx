@@ -4,7 +4,6 @@ import { theme } from 'theme/theme'
 import { ThemeProvider } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
 import { Header, Footer, Layout } from '../components'
-import 'leaflet/dist/leaflet.css'
 
 const open_sans = Open_Sans({
   weight: ['400', '700'],

@@ -188,41 +188,6 @@
     "image": "https://cabila.com/wp-content/uploads/2023/01/Bar-Muniz.jpg"
   },
   {
-    "id": 10,
-    "name": "Muñiz",
-    "description": "Bar castizo en la latina, raciones asequibles, servilletas de gracias por su visita en el suelo. Precios populares y ambiente jovial :-)",
-    "address": "",
-    "city": "Madrid",
-    "lat": null,
-    "lon": null,
-    "rating": 0,
-    "createdAt": "2022-03-20T14:13:37.787Z",
-    "features": [
-      { "id": 1, "name": "Barra de metal" },
-      { "id": 3, "name": "Cosas de Semana Santa" },
-      { "id": 5, "name": "Teléfono público" },
-      { "id": 6, "name": "Tele local" },
-      { "id": 16, "name": "Tragaperras" },
-      { "id": 18, "name": "Camarero: camisa blanca y pantalón negro (pinzas)" },
-      { "id": 19, "name": "Cartel de neón" },
-      { "id": 21, "name": "Vermú de grifo" },
-      {
-        "id": 22,
-        "name": "Tapa estrella (branding): gambas a la planca o pincho de tortilla"
-      },
-      { "id": 24, "name": "No secamanos" },
-      { "id": 27, "name": "Ventanas grandes" },
-      { "id": 28, "name": "Extintor" },
-      { "id": 29, "name": "Cerveza de barril que no sea Cruzcampo o Amstel" },
-      { "id": 31, "name": "Vino de la casa" },
-      { "id": 40, "name": "Azulejos en algun sitio" },
-      { "id": 30, "name": "Público diverso" },
-      { "id": 42, "name": "Servilletero 'Gracias por su visita'" },
-      { "id": 48, "name": "Abrebadero (para servilletas y huesos de pollo)" }
-    ],
-    "image": "https://cabila.com/wp-content/uploads/2023/01/Bar-Muniz.jpg"
-  },
-  {
     "id": 11,
     "name": "Marfe",
     "description": "Bar de barrio. Ideal para la cerve previa a un concierto en el Price.",
