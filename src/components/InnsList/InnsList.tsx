@@ -6,16 +6,14 @@ import { Inn } from '@/models/Inn.model'
 interface InnsListProps {
   inns?: Inn[]
 }
-export const InnsList: FC<InnsListProps> = ({ inns }) => {
-  return (
-    <>
-      {inns && (
-        <StyledInnsList>
-          {inns.map((inn) => (
-            <InnCard key={inn.id} inn={inn} />
-          ))}
-        </StyledInnsList>
-      )}
-    </>
-  )
-}
+export const InnsList: FC<InnsListProps> = ({ inns }) => (
+  <>
+    {inns && (
+      <StyledInnsList>
+        {inns.map((inn) => (
+          <InnCard key={inn.id} inn={inn} />
+        ))}
+      </StyledInnsList>
+    )}
+  </>
+)
