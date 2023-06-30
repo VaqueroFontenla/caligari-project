@@ -14,7 +14,7 @@ export const Header = () => {
           <Logo src={logoPath} alt="Caligari Project logo" />
         </HomeLink>
         <Button variant="contained" disabled>
-          Inicia Sesión
+          Añadir Caligari
         </Button>
       </Navbar>
     </StyledHeader>
