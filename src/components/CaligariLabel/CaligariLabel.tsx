@@ -1,4 +1,3 @@
-import { Feature } from '@/models/Inn.model'
 import { CaligariLabelWrapper } from './CaligariLabel.styles'
 import { FC } from 'react'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
@@ -47,8 +46,8 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep'
 import WarehouseIcon from '@mui/icons-material/Warehouse'
 
 const LabelIcon: Record<string, React.ReactElement> = {
-  1: <TableRestaurantIcon color="primary" fontSize="small" />,
-  2: <EmojiEventsIcon color="primary" fontSize="small" />,
+  'Barra de metal': <TableRestaurantIcon color="primary" fontSize="small" />,
+  'Trofeo random': <EmojiEventsIcon color="primary" fontSize="small" />,
   5: <PhoneIcon color="primary" fontSize="small" />,
   6: <TvIcon color="primary" fontSize="small" />,
   7: <KeyIcon color="primary" fontSize="small" />,
@@ -81,32 +80,37 @@ const LabelIcon: Record<string, React.ReactElement> = {
   34: <Face6Icon color="primary" fontSize="small" />,
   35: <Face5Icon color="primary" fontSize="small" />,
   36: <CoffeeMakerIcon color="primary" fontSize="small" />,
-  37: <SportsSoccerIcon color="primary" fontSize="small" />,
-  38: <HeartBrokenIcon color="primary" fontSize="small" />,
-  39: <LunchDiningIcon color="primary" fontSize="small" />,
-  40: <GridViewIcon color="primary" fontSize="small" />,
-  41: <RadioIcon color="primary" fontSize="small" />,
-  42: <VolunteerActivismIcon color="primary" fontSize="small" />,
-  43: <CakeIcon color="primary" fontSize="small" />,
-  44: <HandshakeIcon color="primary" fontSize="small" />,
-  45: <OilBarrelIcon color="primary" fontSize="small" />,
-  46: <CameraEnhanceIcon color="primary" fontSize="small" />,
-  47: <MoneyIcon color="primary" fontSize="small" />,
-  48: <DeleteSweepIcon color="primary" fontSize="small" />,
-  49: <AirIcon color="primary" fontSize="small" />,
-  50: <WarehouseIcon color="primary" fontSize="small" />,
+  'Bufanda de fútbol de Segunda División': <SportsSoccerIcon color="primary" fontSize="small" />,
+  'Camarero con tatuaje taleguero': <HeartBrokenIcon color="primary" fontSize="small" />,
+  'Sandwich vegetariano con atún': <LunchDiningIcon color="primary" fontSize="small" />,
+  'Azulejos en algun sitio': <GridViewIcon color="primary" fontSize="small" />,
+  'Radio Olé': <RadioIcon color="primary" fontSize="small" />,
+  'Servilletero "Gracias por su visita"': (
+    <VolunteerActivismIcon color="primary" fontSize="small" />
+  ),
+  'Postre: Contesa': <CakeIcon color="primary" fontSize="small" />,
+  'Traspaso sin xeito': <HandshakeIcon color="primary" fontSize="small" />,
+  'Barril en la puerta': <OilBarrelIcon color="primary" fontSize="small" />,
+  'Foto con famoso': <CameraEnhanceIcon color="primary" fontSize="small" />,
+  Lotería: <MoneyIcon color="primary" fontSize="small" />,
+  'Abrebadero (para servilletas y huesos de pollo)': (
+    <DeleteSweepIcon color="primary" fontSize="small" />
+  ),
+  'Sin oxígeno': <AirIcon color="primary" fontSize="small" />,
+  'Cajas de cerveza apiladas a la vista que luego son sillas': (
+    <WarehouseIcon color="primary" fontSize="small" />
+  ),
 }
 
 interface CaligariLabelProps {
-  caligariLabel: Feature
+  caligariLabel: string
 }
 
 export const CaligariLabel: FC<CaligariLabelProps> = ({ caligariLabel }) => {
-  const { id, name } = caligariLabel
   return (
     <CaligariLabelWrapper>
-      {LabelIcon[id]}
-      {name}
+      {LabelIcon[caligariLabel]}
+      {caligariLabel}
     </CaligariLabelWrapper>
   )
 }

@@ -10,11 +10,10 @@ export interface Inn {
   description: string
   address: string
   city: string
-  lat: Nullable<number>
-  lon: Nullable<number>
+  coordinates: { _lat: Nullable<number>; _long: Nullable<number> }
   rating: number
   createdAt: string
-  features: Feature[]
+  features: string[]
   image?: string
 }
 

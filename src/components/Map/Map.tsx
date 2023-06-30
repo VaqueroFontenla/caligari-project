@@ -33,10 +33,13 @@ export const Map: FC<MapProps> = ({ inns, expandMap, isListVisible }) => {
       <ZoomControl position="topright" />
       {inns &&
         inns.map((inn) => {
-          const { lat, lon, id } = inn
-          if (lat && lon) {
+          const {
+            coordinates: { _lat, _long },
+            id,
+          } = inn
+          if (_lat && _long) {
             return (
-              <Marker position={[lat, lon]} key={id}>
+              <Marker position={[_lat, _long]} key={id}>
                 <Popup inn={inn} />
               </Marker>
             )

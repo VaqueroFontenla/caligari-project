@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getInns } from '../services/getInns'
+import { getInns } from '@/services/getInns'
 import { Inn } from '@/models/Inn.model'
 
 export const useInns = () => {

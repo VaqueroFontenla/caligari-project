@@ -1,20 +1,12 @@
-import React, { FC } from 'react'
-import { Slide, SlideProps } from '@mui/material'
+import React from 'react'
+import { Slide } from '@mui/material'
+import { TransitionProps } from '@mui/material/transitions'
 
-interface TranstionProps {
-  transtionIn: boolean
-  direction?: SlideProps['direction']
-  children: React.ReactElement<any, any>
-}
-
-export const Transition: FC<TranstionProps> = ({ transtionIn, direction, children }) => (
-  <Slide
-    direction={direction || 'right'}
-    in={transtionIn}
-    mountOnEnter
-    unmountOnExit
-    timeout={1000}
-  >
-    <div>{children}</div>
-  </Slide>
-)
+export const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} timeout={1000} />
+})

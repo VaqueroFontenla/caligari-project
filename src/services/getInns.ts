@@ -1,16 +1,11 @@
-import { Inn, InnsQueryParams } from '@/models/Inn.model'
-import { objectToQueryParams } from 'mappers/objectToQueryParams'
+import { Inn } from '@/models/Inn.model'
 import { apiClient } from 'utils/apiClient'
-import { Error, ErrorCode, apiError } from 'utils/apiError'
-import { apiRouterProvider } from 'utils/routes'
+import { apiError } from 'utils/apiError'
+import { firebaseCollection } from 'utils/firebaseCollection'
 
-export const getInns = async (innsQueryParams?: InnsQueryParams) => {
+export const getInns = async () => {
   try {
-    const innsPath = innsQueryParams
-      ? `${apiRouterProvider.innsPath}${objectToQueryParams(innsQueryParams)}
-    `
-      : apiRouterProvider.innsPath
-    return await apiClient.get<Inn[]>(innsPath)
+    return await apiClient.get<Inn[]>(firebaseCollection.innsCollection)
   } catch (error) {
     const typingError = apiError.typeError(error)
     throw apiError.mapError(typingError)
