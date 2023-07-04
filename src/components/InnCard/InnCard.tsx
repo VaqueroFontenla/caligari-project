@@ -17,7 +17,7 @@ export const InnCard: React.FC<InnCardProps> = ({ inn }) => {
         <CardMediaWrapper>
           <CardMedia component="img" height="230" image={image} alt={`${name} image`} />
           <LabelRatingWrapper>
-            <Rating defaultValue={rating} size="small" />
+            <Rating defaultValue={rating} size="small" readOnly />
           </LabelRatingWrapper>
         </CardMediaWrapper>
         <CardInfoWrapper>

@@ -29,7 +29,7 @@ export const InnDetailModal: FC<InnDetailModalProps> = ({ inn, open, onClose }) 
             {`${address}, ${city}`}
           </Typography>
         </Box>
-        <CloseIcon onClick={onClose} fontSize="large" />
+        <CloseIcon onClick={onClose} fontSize="large" sx={{ cursor: 'pointer' }} />
       </DialogTitle>
       <DialogContent>
         <Typography variant="body1" color="text.secondary" mb={4}>
