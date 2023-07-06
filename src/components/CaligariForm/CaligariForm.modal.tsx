@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { Transition } from '..'
-import { CaligariFormElement } from './CaligariForm.styles'
+import { CaligariFormElement, RatingWrapper } from './CaligariForm.styles'
 import { Inn } from '@/models/Inn.model'
 
 interface CaligariFormProps {
@@ -25,7 +25,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
     address: '',
     city: '',
     coordinates: { _lat: null, _long: null },
-    rating: 5,
+    rating: 0,
     features: [],
     image: '',
   })
@@ -45,18 +45,40 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
       </DialogTitle>
       <DialogContent>
         <CaligariFormElement onSubmit={handleSubmit}>
-          <TextField id="name" name="name" label="Nombre" variant="outlined" />
+          <TextField
+            id="name"
+            name="name"
+            label="Nombre"
+            variant="outlined"
+            value={formData.name}
+          />
           <TextField
             id="description"
             name="description"
             label="Descripción"
             variant="outlined"
             multiline
-            rows={4}
+            minRows={3}
+            value={formData.description}
           />
-          <TextField id="address" name="address" label="Dirección" variant="outlined" />
-          <TextField id="city" name="city" label="Ciudad" variant="outlined" />
-          <Rating defaultValue={formData.rating} size="small" />
+          <TextField
+            id="address"
+            name="address"
+            label="Dirección"
+            variant="outlined"
+            value={formData.address}
+          />
+          <TextField
+            id="city"
+            name="city"
+            label="Ciudad"
+            variant="outlined"
+            value={formData.city}
+          />
+          <RatingWrapper>
+            {' '}
+            <Rating defaultValue={formData.rating} size="large" value={formData.rating} />
+          </RatingWrapper>
         </CaligariFormElement>
       </DialogContent>
     </Dialog>
