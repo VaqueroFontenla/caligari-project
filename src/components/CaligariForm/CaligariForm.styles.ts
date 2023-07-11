@@ -9,7 +9,10 @@ export const CaligariFormElement = styled('form')(
 
 export const RatingWrapper = styled(Box)(
   ({ theme }) => `
-    display:flex;
-    justify-content: center;
+    display:grid;
+
+    border-radius: ${theme.spacing(1)};
+    border: 1px solid ${theme.palette.primary.light};
+    padding: ${theme.spacing(3)};
     `
 )

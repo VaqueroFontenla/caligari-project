@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Transition } from '..'
 import { CaligariFormElement, RatingWrapper } from './CaligariForm.styles'
 import { Inn } from '@/models/Inn.model'
+import { useFeatures } from '@/hooks/useFeatures'
 
 interface CaligariFormProps {
   open: boolean
@@ -19,6 +20,7 @@ interface CaligariFormProps {
 }
 
 export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
+  const { features, featuresLoading, featuresError } = useFeatures()
   const [formData, setFormData] = useState<Inn>({
     name: '',
     description: '',
@@ -76,8 +78,15 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             value={formData.city}
           />
           <RatingWrapper>
-            {' '}
-            <Rating defaultValue={formData.rating} size="large" value={formData.rating} />
+            <Typography variant="body1" color="text.secondary" mb={4}>
+              Califica:
+            </Typography>{' '}
+            <Rating
+              defaultValue={formData.rating}
+              size="large"
+              value={formData.rating}
+              sx={{ justifySelf: 'center' }}
+            />
           </RatingWrapper>
         </CaligariFormElement>
       </DialogContent>
