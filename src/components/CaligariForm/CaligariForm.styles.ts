@@ -7,12 +7,20 @@ export const CaligariFormElement = styled('form')(
     padding:${theme.spacing(2)}`
 )
 
-export const RatingWrapper = styled(Box)(
+export const InputWrapper = styled(Box)(
   ({ theme }) => `
     display:grid;
-
     border-radius: ${theme.spacing(1)};
     border: 1px solid ${theme.palette.primary.light};
     padding: ${theme.spacing(3)};
     `
+)
+
+export const InnFeaturesWrapper = styled('ul')(
+  ({ theme }) => `
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:${theme.spacing(2)} ${theme.spacing(3)};
+    justify-content: start;
+`
 )

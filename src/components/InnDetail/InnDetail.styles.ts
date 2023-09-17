@@ -1,6 +1,6 @@
-import { styled, Box } from '@mui/material'
+import { styled } from '@mui/material'
 
-export const InnFeaturesWrapper = styled(Box)(
+export const InnFeaturesWrapper = styled('ul')(
   ({ theme }) => `
     display: grid;
     grid-template-columns: auto auto;

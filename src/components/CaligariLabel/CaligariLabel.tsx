@@ -1,4 +1,8 @@
-import { CaligariLabelWrapper } from './CaligariLabel.styles'
+import {
+  StyledCaligariLabelWrapper,
+  StyledCaligariLabel,
+  StyledCheckboxCaligariLabel,
+} from './CaligariLabel.styles'
 import { FC } from 'react'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import PhoneIcon from '@mui/icons-material/Phone'
@@ -112,13 +116,25 @@ const LabelIcon: Record<string, React.ReactElement> = {
 
 interface CaligariLabelProps {
   caligariLabel: string
+  isChecked?: boolean
+  caligariLabelToggleCheck?: (checked: boolean) => void
 }
 
-export const CaligariLabel: FC<CaligariLabelProps> = ({ caligariLabel }) => {
+export const CaligariLabel: FC<CaligariLabelProps> = ({
+  caligariLabel,
+  isChecked,
+  caligariLabelToggleCheck,
+}) => {
   return (
-    <CaligariLabelWrapper>
+    <StyledCaligariLabelWrapper>
+      <StyledCheckboxCaligariLabel
+        id={caligariLabel}
+        name={caligariLabel}
+        onChange={(evt) => caligariLabelToggleCheck(evt.target.checked)}
+        checked={isChecked}
+      />
       {LabelIcon[caligariLabel]}
-      {caligariLabel}
-    </CaligariLabelWrapper>
+      <StyledCaligariLabel htmlFor={caligariLabel}>{caligariLabel}</StyledCaligariLabel>
+    </StyledCaligariLabelWrapper>
   )
 }

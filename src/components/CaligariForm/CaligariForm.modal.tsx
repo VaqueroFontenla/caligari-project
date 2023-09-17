@@ -7,10 +7,11 @@ import {
   Typography,
   TextField,
   Rating,
+  CircularProgress,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
-import { Transition } from '..'
-import { CaligariFormElement, RatingWrapper } from './CaligariForm.styles'
+import { CaligariLabel, Transition } from '..'
+import { CaligariFormElement, InnFeaturesWrapper, InputWrapper } from './CaligariForm.styles'
 import { Inn } from '@/models/Inn.model'
 import { useFeatures } from '@/hooks/useFeatures'
 
@@ -77,7 +78,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             variant="outlined"
             value={formData.city}
           />
-          <RatingWrapper>
+          <InputWrapper>
             <Typography variant="body1" color="text.secondary" mb={4}>
               Califica:
             </Typography>{' '}
@@ -87,7 +88,20 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
               value={formData.rating}
               sx={{ justifySelf: 'center' }}
             />
-          </RatingWrapper>
+          </InputWrapper>
+          <InputWrapper>
+            <Typography variant="body1" color="text.secondary" mb={4}>
+              Etiquetas Caligari:
+            </Typography>{' '}
+            {featuresLoading && <CircularProgress />}
+            {features && (
+              <InnFeaturesWrapper>
+                {features.map((feature) => (
+                  <CaligariLabel caligariLabel={feature.name} key={feature.id} />
+                ))}
+              </InnFeaturesWrapper>
+            )}
+          </InputWrapper>
         </CaligariFormElement>
       </DialogContent>
     </Dialog>
