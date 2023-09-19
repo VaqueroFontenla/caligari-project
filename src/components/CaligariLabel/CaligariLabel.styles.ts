@@ -3,10 +3,6 @@ import { styled } from '@mui/material'
 export const StyledCheckboxCaligariLabel = styled('input')(
   ({ theme }) => `
     display: none;
-    :checked {
-
-      background-color:${theme.palette.secondary.main}
-    }
   `
 )
 StyledCheckboxCaligariLabel.defaultProps = {

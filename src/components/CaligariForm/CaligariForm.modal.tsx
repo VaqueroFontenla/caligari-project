@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,7 @@ interface CaligariFormProps {
 
 export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
   const { features, featuresLoading, featuresError } = useFeatures()
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({})
   const [formData, setFormData] = useState<Inn>({
     name: '',
     description: '',
@@ -32,8 +33,14 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
     features: [],
     image: '',
   })
-  const toggleCaligariLabel = (checked: boolean) => console.log(checked)
+  const handleChangeCaligariLabel = (event: ChangeEvent<HTMLInputElement>) => {
+    setCheckedItems({
+      ...checkedItems,
+      [event.target.name]: event.target.checked,
+    })
+  }
   const handleSubmit = () => ''
+  console.log('checkedItems', checkedItems)
   return (
     <Dialog fullWidth maxWidth="md" open={open} onClose={onClose} TransitionComponent={Transition}>
       <DialogTitle
@@ -99,9 +106,10 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
               <InnFeaturesWrapper>
                 {features.map((feature) => (
                   <CaligariLabel
-                    caligariLabel={feature.name}
+                    caligariLabel={feature}
                     key={feature.id}
-                    toggleCaligariLabel={toggleCaligariLabel}
+                    isChecked={!!checkedItems[feature.id]}
+                    handleChangeCaligariLabel={handleChangeCaligariLabel}
                   />
                 ))}
               </InnFeaturesWrapper>

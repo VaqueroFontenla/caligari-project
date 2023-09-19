@@ -4,6 +4,8 @@ import {
   StyledCaligariLabel,
   StyledCheckboxCaligariLabel,
 } from './CaligariLabel.styles'
+import { Feature } from '@/models/Inn.model'
+
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
 import PhoneIcon from '@mui/icons-material/Phone'
 import TvIcon from '@mui/icons-material/Tv'
@@ -115,25 +117,29 @@ const LabelIcon: Record<string, React.ReactElement> = {
 }
 
 interface CaligariLabelProps {
-  caligariLabel: string
+  caligariLabel: Feature
   isChecked?: boolean
-  toggleCaligariLabel?: (checked: boolean) => void
+  handleChangeCaligariLabel?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const CaligariLabel: FC<CaligariLabelProps> = ({ caligariLabel, toggleCaligariLabel }) => {
-  const [isChecked, setIsChecked] = useState(false)
-
-  const handleChangeCaligariLabel = () => setIsChecked((isChecked) => !isChecked)
+export const CaligariLabel: FC<CaligariLabelProps> = ({
+  caligariLabel,
+  isChecked,
+  handleChangeCaligariLabel,
+}) => {
+  const { id, name } = caligariLabel
   return (
-    <StyledCaligariLabelWrapper>
-      <StyledCheckboxCaligariLabel
-        id={caligariLabel}
-        name={caligariLabel}
-        onChange={handleChangeCaligariLabel}
-        checked={isChecked}
-      />
-      {LabelIcon[caligariLabel]}
-      <StyledCaligariLabel htmlFor={caligariLabel}>{caligariLabel}</StyledCaligariLabel>
+    <StyledCaligariLabelWrapper isChecked={isChecked}>
+      {handleChangeCaligariLabel && (
+        <StyledCheckboxCaligariLabel
+          id={id}
+          name={id}
+          onChange={handleChangeCaligariLabel}
+          checked={isChecked}
+        />
+      )}
+      {LabelIcon[name]}
+      <StyledCaligariLabel htmlFor={id}>{name}</StyledCaligariLabel>
     </StyledCaligariLabelWrapper>
   )
 }

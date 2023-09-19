@@ -38,7 +38,7 @@ export const InnDetailModal: FC<InnDetailModalProps> = ({ inn, open, onClose }) 
         <CaligariLabelsText>Etiquetas Caligari</CaligariLabelsText>
         <InnFeaturesWrapper>
           {features.map((feature) => (
-            <CaligariLabel caligariLabel={feature.name} key={feature.id} />
+            <CaligariLabel caligariLabel={feature} key={feature.id} />
           ))}
         </InnFeaturesWrapper>
       </DialogContent>

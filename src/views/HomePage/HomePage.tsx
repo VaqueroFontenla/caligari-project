@@ -11,7 +11,7 @@ const HomePage = () => {
   const { inns, innsLoading, innsError } = useInns()
   const { isVisible: isListVisible, toggle: expandMap } = useToggle()
   return (
-    <HomeWrapper isListVisible={true} isMobile={mobile}>
+    <HomeWrapper isListVisible={isListVisible} isMobile={mobile}>
       <InnsList inns={inns} />
       <Map inns={inns} expandMap={expandMap} isListVisible={isListVisible} />
     </HomeWrapper>
