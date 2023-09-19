@@ -1,7 +1,9 @@
 import { styled, Box } from '@mui/material'
+import isPropValid from '@emotion/is-prop-valid'
 
 export const HomeWrapper = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'isMobile',
+  shouldForwardProp: (prop) =>
+    isPropValid(prop as string) && prop !== 'isListVisible' && prop !== 'isListVisible',
 })<{ isMobile?: boolean; isListVisible?: boolean }>(
   ({ theme, isMobile, isListVisible }) => `
     display: grid;

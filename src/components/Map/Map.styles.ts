@@ -1,4 +1,5 @@
 import { styled } from '@mui/material'
+import isPropValid from '@emotion/is-prop-valid'
 import { MapContainer } from 'utils/dynamicImportsLeaflet'
 
 export const StyledMapContainer = styled(MapContainer)(
@@ -21,7 +22,7 @@ export const StyledMapContainer = styled(MapContainer)(
 )
 
 export const StyledExpandIcon = styled('span', {
-  shouldForwardProp: (prop) => prop !== 'isListVisible',
+  shouldForwardProp: (prop) => isPropValid(prop as string) && prop !== 'isListVisible',
 })<{
   isListVisible?: boolean
 }>(

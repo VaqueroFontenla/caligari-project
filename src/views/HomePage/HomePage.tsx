@@ -10,9 +10,8 @@ const HomePage = () => {
   const mobile = useMediaQuery(theme.breakpoints.down('md'))
   const { inns, innsLoading, innsError } = useInns()
   const { isVisible: isListVisible, toggle: expandMap } = useToggle()
-
   return (
-    <HomeWrapper isListVisible={isListVisible} isMobile={mobile}>
+    <HomeWrapper isListVisible={true} isMobile={mobile}>
       <InnsList inns={inns} />
       <Map inns={inns} expandMap={expandMap} isListVisible={isListVisible} />
     </HomeWrapper>

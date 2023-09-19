@@ -32,6 +32,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
     features: [],
     image: '',
   })
+  const toggleCaligariLabel = (checked: boolean) => console.log(checked)
   const handleSubmit = () => ''
   return (
     <Dialog fullWidth maxWidth="md" open={open} onClose={onClose} TransitionComponent={Transition}>
@@ -97,7 +98,11 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             {features && (
               <InnFeaturesWrapper>
                 {features.map((feature) => (
-                  <CaligariLabel caligariLabel={feature.name} key={feature.id} />
+                  <CaligariLabel
+                    caligariLabel={feature.name}
+                    key={feature.id}
+                    toggleCaligariLabel={toggleCaligariLabel}
+                  />
                 ))}
               </InnFeaturesWrapper>
             )}
