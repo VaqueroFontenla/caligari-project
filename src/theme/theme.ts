@@ -72,6 +72,7 @@ export const theme = createTheme({
         },
         ul: {
           listStyle: 'none',
+          padding: 0,
         },
       },
     },
@@ -79,6 +80,15 @@ export const theme = createTheme({
       defaultProps: {
         variantMapping: {
           body1: 'span',
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            borderRadius: 10,
+          },
         },
       },
     },

@@ -3,14 +3,17 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Typography,
   TextField,
   Rating,
   CircularProgress,
+  Grid,
+  Box,
+  useTheme,
+  Button,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { CaligariLabel, Transition } from '..'
-import { CaligariFormElement, InnFeaturesWrapper, InputWrapper } from './CaligariForm.styles'
+import { InnFeaturesWrapper } from './CaligariForm.styles'
 import { InnPayload } from '@/models/Inn.model'
 import { useFeatures } from '@/hooks/useFeatures'
 
@@ -20,6 +23,7 @@ interface CaligariFormProps {
 }
 
 export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
+  const theme = useTheme()
   const { features, featuresLoading, featuresError } = useFeatures()
   const [formData, setFormData] = useState<InnPayload>({
     name: '',
@@ -62,73 +66,170 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
         Añade tu bar Caligari
         <CloseIcon onClick={onClose} fontSize="large" sx={{ cursor: 'pointer' }} />
       </DialogTitle>
-      <DialogContent>
-        <CaligariFormElement onSubmit={handleSubmit}>
-          <TextField
-            id="name"
-            name="name"
-            label="Nombre"
-            variant="outlined"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
-          <TextField
-            id="description"
-            name="description"
-            label="Descripción"
-            variant="outlined"
-            multiline
-            minRows={3}
-            value={formData.description}
-            onChange={handleInputChange}
-          />
-          <TextField
-            id="address"
-            name="address"
-            label="Dirección"
-            variant="outlined"
-            value={formData.address}
-            onChange={handleInputChange}
-          />
-          <TextField
-            id="city"
-            name="city"
-            label="Ciudad"
-            variant="outlined"
-            value={formData.city}
-            onChange={handleInputChange}
-          />
-          <InputWrapper>
-            <Typography variant="body1" color="text.secondary" mb={4}>
-              Califica:
-            </Typography>{' '}
-            <Rating
-              defaultValue={formData.rating}
-              size="large"
-              value={formData.rating}
-              sx={{ justifySelf: 'center' }}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Typography variant="body1" color="text.secondary" mb={4}>
-              Etiquetas Caligari:
-            </Typography>{' '}
-            {featuresLoading && <CircularProgress />}
-            {features && (
-              <InnFeaturesWrapper>
-                {features.map((feature) => (
-                  <CaligariLabel
-                    caligariLabel={feature}
-                    key={feature.id}
-                    isChecked={isChecked(feature.id)}
-                    handleChangeCaligariLabel={handleChangeCaligariLabel}
-                  />
-                ))}
-              </InnFeaturesWrapper>
-            )}
-          </InputWrapper>
-        </CaligariFormElement>
-      </DialogContent>
+      <form onSubmit={handleSubmit}>
+        <DialogContent>
+          <Grid container spacing={0}>
+            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+              <Box
+                pr={3}
+                sx={{
+                  pt: `${theme.spacing(2)}`,
+                  pb: { xs: 1, md: 0 },
+                }}
+                alignSelf="center"
+              >
+                <b>Nombre:</b>
+              </Box>
+            </Grid>
+            <Grid
+              sx={{
+                mb: `${theme.spacing(3)}`,
+              }}
+              item
+              xs={12}
+              sm={8}
+              md={9}
+            >
+              <TextField
+                id="name"
+                name="name"
+                placeholder="Nombre del bar..."
+                variant="outlined"
+                fullWidth
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+              <Box
+                pr={3}
+                sx={{
+                  pt: `${theme.spacing(2)}`,
+                  pb: { xs: 1, md: 0 },
+                }}
+                alignSelf="center"
+              >
+                <b>Descripción:</b>
+              </Box>
+            </Grid>
+            <Grid
+              sx={{
+                mb: `${theme.spacing(3)}`,
+              }}
+              item
+              xs={12}
+              sm={8}
+              md={9}
+            >
+              <TextField
+                id="description"
+                name="description"
+                placeholder="¿Cómo es este bar?"
+                variant="outlined"
+                multiline
+                minRows={3}
+                value={formData.description}
+                onChange={handleInputChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+              <Box
+                pr={3}
+                sx={{
+                  pt: `${theme.spacing(2)}`,
+                  pb: { xs: 1, md: 0 },
+                }}
+                alignSelf="center"
+              >
+                <b>Dirección:</b>
+              </Box>
+            </Grid>
+            <Grid
+              sx={{
+                mb: `${theme.spacing(3)}`,
+              }}
+              item
+              xs={12}
+              sm={8}
+              md={9}
+            >
+              <TextField
+                id="address"
+                name="address"
+                placeholder="¿Dónde está?"
+                variant="outlined"
+                value={formData.address}
+                onChange={handleInputChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+              <Box
+                pr={3}
+                sx={{
+                  pt: `${theme.spacing(2)}`,
+                  pb: { xs: 1, md: 0 },
+                }}
+                alignSelf="center"
+              >
+                <b>Califica:</b>
+              </Box>
+            </Grid>
+            <Grid
+              sx={{
+                mb: `${theme.spacing(3)}`,
+              }}
+              item
+              xs={12}
+              sm={8}
+              md={9}
+              textAlign="center"
+            >
+              <Rating defaultValue={formData.rating} size="large" value={formData.rating} />
+            </Grid>
+            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+              <Box
+                pr={3}
+                sx={{
+                  pt: `${theme.spacing(2)}`,
+                  pb: { xs: 1, md: 0 },
+                }}
+                alignSelf="center"
+              >
+                <b>Selecciona etiquetas caligari:</b>
+              </Box>
+            </Grid>
+            <Grid
+              sx={{
+                mb: `${theme.spacing(3)}`,
+              }}
+              item
+              xs={12}
+              sm={8}
+              md={9}
+              textAlign="center"
+            >
+              {featuresLoading && <CircularProgress />}
+              {features && (
+                <InnFeaturesWrapper>
+                  {features.map((feature) => (
+                    <CaligariLabel
+                      caligariLabel={feature}
+                      key={feature.id}
+                      isChecked={isChecked(feature.id)}
+                      handleChangeCaligariLabel={handleChangeCaligariLabel}
+                    />
+                  ))}
+                </InnFeaturesWrapper>
+              )}{' '}
+            </Grid>
+          </Grid>
+          <Button variant="contained" type="submit">
+            Añadir Caligari
+          </Button>
+        </DialogContent>
+      </form>
     </Dialog>
   )
 }
