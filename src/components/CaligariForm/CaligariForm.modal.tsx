@@ -1,9 +1,8 @@
-import { ChangeEvent, FC, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Box,
   Typography,
   TextField,
   Rating,
@@ -12,7 +11,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import { CaligariLabel, Transition } from '..'
 import { CaligariFormElement, InnFeaturesWrapper, InputWrapper } from './CaligariForm.styles'
-import { Inn } from '@/models/Inn.model'
+import { InnPayload } from '@/models/Inn.model'
 import { useFeatures } from '@/hooks/useFeatures'
 
 interface CaligariFormProps {
@@ -22,8 +21,7 @@ interface CaligariFormProps {
 
 export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
   const { features, featuresLoading, featuresError } = useFeatures()
-  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>({})
-  const [formData, setFormData] = useState<Inn>({
+  const [formData, setFormData] = useState<InnPayload>({
     name: '',
     description: '',
     address: '',
@@ -33,14 +31,24 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
     features: [],
     image: '',
   })
-  const handleChangeCaligariLabel = (event: ChangeEvent<HTMLInputElement>) => {
-    setCheckedItems({
-      ...checkedItems,
-      [event.target.name]: event.target.checked,
-    })
+  const isChecked = (featureId: string) => formData.features.includes(featureId)
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
   }
-  const handleSubmit = () => ''
-  console.log('checkedItems', checkedItems)
+  const handleChangeCaligariLabel = (event: ChangeEvent<HTMLInputElement>) => {
+    if (!!event.target.checked)
+      setFormData({ ...formData, features: [...formData.features, event.target.name] })
+    if (!event.target.checked)
+      setFormData({
+        ...formData,
+        features: formData.features.filter((feature) => feature !== event.target.name),
+      })
+  }
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    console.dir(formData)
+  }
+
   return (
     <Dialog fullWidth maxWidth="md" open={open} onClose={onClose} TransitionComponent={Transition}>
       <DialogTitle
@@ -51,7 +59,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
           p: 6,
         }}
       >
-        <Typography variant="h5">Añade tu bar Caligari</Typography>
+        Añade tu bar Caligari
         <CloseIcon onClick={onClose} fontSize="large" sx={{ cursor: 'pointer' }} />
       </DialogTitle>
       <DialogContent>
@@ -62,6 +70,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             label="Nombre"
             variant="outlined"
             value={formData.name}
+            onChange={handleInputChange}
           />
           <TextField
             id="description"
@@ -71,6 +80,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             multiline
             minRows={3}
             value={formData.description}
+            onChange={handleInputChange}
           />
           <TextField
             id="address"
@@ -78,6 +88,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             label="Dirección"
             variant="outlined"
             value={formData.address}
+            onChange={handleInputChange}
           />
           <TextField
             id="city"
@@ -85,6 +96,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
             label="Ciudad"
             variant="outlined"
             value={formData.city}
+            onChange={handleInputChange}
           />
           <InputWrapper>
             <Typography variant="body1" color="text.secondary" mb={4}>
@@ -108,7 +120,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
                   <CaligariLabel
                     caligariLabel={feature}
                     key={feature.id}
-                    isChecked={!!checkedItems[feature.id]}
+                    isChecked={isChecked(feature.id)}
                     handleChangeCaligariLabel={handleChangeCaligariLabel}
                   />
                 ))}

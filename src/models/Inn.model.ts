@@ -7,28 +7,20 @@ export interface Feature {
   name: string
 }
 export interface Inn {
-  id?: number
+  id: number
   name: string
   description: string
   address: string
   city: string
   coordinates: { _lat: Nullable<number>; _long: Nullable<number> }
   rating: number
-  createdAt?: string
+  createdAt: string
   features: Feature[]
   image?: string
 }
 
-export interface FBInn {
-  id?: number
-  name: string
-  description: string
-  address: string
-  city: string
-  coordinates: { _lat: Nullable<number>; _long: Nullable<number> }
-  rating: number
-  createdAt?: string
-  features: DocumentReference[]
-  image?: string
+export interface InnPayload extends Omit<Inn, 'id' | 'createdAt' | 'features'> {
+  features: string[]
 }
+
 export interface InnsQueryParams {}

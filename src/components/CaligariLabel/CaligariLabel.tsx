@@ -130,16 +130,18 @@ export const CaligariLabel: FC<CaligariLabelProps> = ({
   const { id, name } = caligariLabel
   return (
     <StyledCaligariLabelWrapper isChecked={isChecked}>
-      {handleChangeCaligariLabel && (
-        <StyledCheckboxCaligariLabel
-          id={id}
-          name={id}
-          onChange={handleChangeCaligariLabel}
-          checked={isChecked}
-        />
-      )}
-      {LabelIcon[name]}
-      <StyledCaligariLabel htmlFor={id}>{name}</StyledCaligariLabel>
+      <StyledCaligariLabel htmlFor={id}>
+        {handleChangeCaligariLabel && (
+          <StyledCheckboxCaligariLabel
+            id={id}
+            name={id}
+            onChange={handleChangeCaligariLabel}
+            checked={isChecked}
+          />
+        )}
+        {LabelIcon[name]}
+        {name}
+      </StyledCaligariLabel>
     </StyledCaligariLabelWrapper>
   )
 }

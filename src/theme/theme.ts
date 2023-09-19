@@ -70,6 +70,9 @@ export const theme = createTheme({
         'h1, h2, h3, h4, h5': {
           margin: '0',
         },
+        ul: {
+          listStyle: 'none',
+        },
       },
     },
     MuiTypography: {
