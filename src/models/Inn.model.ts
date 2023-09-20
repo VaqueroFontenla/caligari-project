@@ -13,13 +13,13 @@ export interface Inn {
   address: string
   city: string
   coordinates: { _lat: Nullable<number>; _long: Nullable<number> }
-  rating: number
+  rating: Nullable<number>
   createdAt: string
   features: Feature[]
-  image?: string
 }
 
-export interface InnPayload extends Omit<Inn, 'id' | 'createdAt' | 'features'> {
+export interface InnPayload
+  extends Omit<Inn, 'id' | 'createdAt' | 'features' | 'coordinates' | 'city'> {
   features: string[]
 }
 

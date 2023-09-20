@@ -73,6 +73,7 @@ export const theme = createTheme({
         ul: {
           listStyle: 'none',
           padding: 0,
+          margin: 0,
         },
       },
     },

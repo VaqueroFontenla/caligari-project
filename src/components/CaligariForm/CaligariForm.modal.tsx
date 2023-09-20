@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, MouseEventHandler, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -22,20 +22,22 @@ interface CaligariFormProps {
   onClose: () => void
 }
 
+const initialFormData: InnPayload = {
+  name: '',
+  description: '',
+  address: '',
+  rating: 0,
+  features: [],
+}
 export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
   const theme = useTheme()
   const { features, featuresLoading, featuresError } = useFeatures()
-  const [formData, setFormData] = useState<InnPayload>({
-    name: '',
-    description: '',
-    address: '',
-    city: '',
-    coordinates: { _lat: null, _long: null },
-    rating: 0,
-    features: [],
-    image: '',
-  })
+  const [formData, setFormData] = useState<InnPayload>(initialFormData)
   const isChecked = (featureId: string) => formData.features.includes(featureId)
+
+  const handleRatingInput = (newRatingValue: number | null) =>
+    setFormData({ ...formData, rating: newRatingValue })
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
@@ -48,6 +50,11 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
         features: formData.features.filter((feature) => feature !== event.target.name),
       })
   }
+  const handleReset = (_event: MouseEventHandler<HTMLButtonElement>) => {
+    setFormData(initialFormData)
+    onClose()
+  }
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.dir(formData)
@@ -69,14 +76,12 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
       <form onSubmit={handleSubmit}>
         <DialogContent>
           <Grid container spacing={0}>
-            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+            <Grid item xs={12} sm={4} md={3}>
               <Box
-                pr={3}
                 sx={{
                   pt: `${theme.spacing(2)}`,
                   pb: { xs: 1, md: 0 },
                 }}
-                alignSelf="center"
               >
                 <b>Nombre:</b>
               </Box>
@@ -100,14 +105,12 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
                 onChange={handleInputChange}
               />
             </Grid>
-            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+            <Grid item xs={12} sm={4} md={3}>
               <Box
-                pr={3}
                 sx={{
                   pt: `${theme.spacing(2)}`,
                   pb: { xs: 1, md: 0 },
                 }}
-                alignSelf="center"
               >
                 <b>Descripción:</b>
               </Box>
@@ -133,14 +136,12 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
                 fullWidth
               />
             </Grid>
-            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+            <Grid item xs={12} sm={4} md={3}>
               <Box
-                pr={3}
                 sx={{
                   pt: `${theme.spacing(2)}`,
                   pb: { xs: 1, md: 0 },
                 }}
-                alignSelf="center"
               >
                 <b>Dirección:</b>
               </Box>
@@ -164,14 +165,12 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
                 fullWidth
               />
             </Grid>
-            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+            <Grid item xs={12} sm={4} md={3}>
               <Box
-                pr={3}
                 sx={{
                   pt: `${theme.spacing(2)}`,
                   pb: { xs: 1, md: 0 },
                 }}
-                alignSelf="center"
               >
                 <b>Califica:</b>
               </Box>
@@ -186,29 +185,30 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
               md={9}
               textAlign="center"
             >
-              <Rating defaultValue={formData.rating} size="large" value={formData.rating} />
+              <Rating
+                size="large"
+                value={formData.rating}
+                onChange={(_event: React.SyntheticEvent, newValue: number | null) =>
+                  handleRatingInput(newValue)
+                }
+              />
             </Grid>
-            <Grid item xs={12} sm={4} md={3} justifyContent="flex-end" textAlign={{ sm: 'right' }}>
+            <Grid item xs={12} sm={4} md={3}>
               <Box
-                pr={3}
                 sx={{
                   pt: `${theme.spacing(2)}`,
                   pb: { xs: 1, md: 0 },
                 }}
-                alignSelf="center"
               >
                 <b>Selecciona etiquetas caligari:</b>
               </Box>
             </Grid>
             <Grid
               sx={{
-                mb: `${theme.spacing(3)}`,
+                my: `${theme.spacing(3)}`,
               }}
               item
               xs={12}
-              sm={8}
-              md={9}
-              textAlign="center"
             >
               {featuresLoading && <CircularProgress />}
               {features && (
@@ -222,12 +222,27 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
                     />
                   ))}
                 </InnFeaturesWrapper>
-              )}{' '}
+              )}
             </Grid>
           </Grid>
-          <Button variant="contained" type="submit">
-            Añadir Caligari
-          </Button>
+          <Grid
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              my: 6,
+              [theme.breakpoints.up('sm')]: {
+                justifyContent: 'flex-end',
+                columnGap: theme.spacing(6),
+              },
+            }}
+          >
+            <Button variant="outlined" onClick={handleReset}>
+              Cancelar
+            </Button>
+            <Button variant="contained" type="submit">
+              Añadir Caligari
+            </Button>
+          </Grid>
         </DialogContent>
       </form>
     </Dialog>
