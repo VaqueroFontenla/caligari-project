@@ -50,7 +50,8 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
         features: formData.features.filter((feature) => feature !== event.target.name),
       })
   }
-  const handleReset = (_event: MouseEventHandler<HTMLButtonElement>) => {
+  const handleReset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault()
     setFormData(initialFormData)
     onClose()
   }
@@ -236,7 +237,7 @@ export const CaligariForm: FC<CaligariFormProps> = ({ open, onClose }) => {
               },
             }}
           >
-            <Button variant="outlined" onClick={handleReset}>
+            <Button variant="outlined" type="button" onClick={handleReset}>
               Cancelar
             </Button>
             <Button variant="contained" type="submit">
