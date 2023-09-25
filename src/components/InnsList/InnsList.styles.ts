@@ -8,6 +8,7 @@ export const StyledInnsList = styled(Box)(
     gap: ${theme.spacing(8)} ${theme.spacing(6)};
     justify-content: center;
     align-items: start;
-    overflow: scroll;
+    overflow-y: scroll;
+    padding: ${theme.spacing(8)};
 `
 )

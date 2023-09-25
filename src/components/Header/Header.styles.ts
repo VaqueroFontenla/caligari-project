@@ -22,8 +22,7 @@ export const Navbar = styled('nav')(
     max-width: ${theme.breakpoints.values.lg}px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 ${theme.spacing(16)};
-
+    padding: 0 ${theme.spacing(8)};
 `
 )
 

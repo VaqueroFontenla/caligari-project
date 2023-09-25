@@ -9,7 +9,7 @@ export const InnFeaturesWrapper = styled('ul')(
 `
 )
 
-export const CaligariLabelsText = styled('span')(
+export const CaligariTagsText = styled('span')(
   ({ theme }) => `
   display: flex;
   align-items: center;

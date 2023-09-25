@@ -65,7 +65,6 @@ export const theme = createTheme({
         body: {
           margin: '0',
           boxSizing: 'border-box',
-          backgroundColor: themeColors.bodyBg,
         },
         'h1, h2, h3, h4, h5': {
           margin: '0',

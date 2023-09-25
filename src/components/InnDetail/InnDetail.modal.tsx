@@ -2,8 +2,8 @@ import { FC } from 'react'
 import { Dialog, DialogContent, DialogTitle, Typography, Box, Slide } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { Inn } from '@/models/Inn.model'
-import { CaligariLabelsText, InnFeaturesWrapper } from './InnDetail.styles'
-import { CaligariLabel, Transition } from '..'
+import { CaligariTagsText, InnFeaturesWrapper } from './InnDetail.styles'
+import { Tag, Transition } from '..'
 
 interface InnDetailModalProps {
   inn: Inn
@@ -35,10 +35,10 @@ export const InnDetailModal: FC<InnDetailModalProps> = ({ inn, open, onClose }) 
         <Typography variant="body1" color="text.secondary" mb={4}>
           {description}
         </Typography>
-        <CaligariLabelsText>Etiquetas Caligari</CaligariLabelsText>
+        <CaligariTagsText>Etiquetas Caligari</CaligariTagsText>
         <InnFeaturesWrapper>
           {features.map((feature) => (
-            <CaligariLabel caligariLabel={feature} key={feature.id} />
+            <Tag tag={feature} key={feature.id} />
           ))}
         </InnFeaturesWrapper>
       </DialogContent>
