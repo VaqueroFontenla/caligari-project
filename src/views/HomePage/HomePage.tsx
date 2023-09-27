@@ -1,5 +1,5 @@
-import { useMediaQuery, useTheme } from '@mui/material'
-import { InnsList, Map, Transition } from '@/components/index'
+import { useMediaQuery, useTheme, CircularProgress } from '@mui/material'
+import { InnsList, Map } from '@/components/index'
 import { useInns } from '@/hooks/useInns'
 import { useToggle } from '@/hooks/useToggle'
 
@@ -12,6 +12,9 @@ const HomePage = () => {
   const desktop = useMediaQuery(theme.breakpoints.up('md'))
   const { inns, innsLoading, innsError } = useInns()
   const { isVisible: isListVisible, toggle: expandMap } = useToggle()
+  if (innsLoading) {
+    return <CircularProgress />
+  }
   return (
     <>
       {mobile && (

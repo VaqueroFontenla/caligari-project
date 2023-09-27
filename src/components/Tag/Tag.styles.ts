@@ -19,6 +19,7 @@ export const StyledTagWrapper = styled('li', {
       isChecked ? theme.palette.secondary.main : theme.palette.background.default
     };
     border-radius:  ${theme.spacing(4)};
+    cursor: pointer;
   `
 )
 

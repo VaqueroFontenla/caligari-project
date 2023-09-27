@@ -7,19 +7,22 @@ export interface Feature {
   name: string
 }
 export interface Inn {
-  id: number
+  id?: number
   name: string
   description: string
   address: string
   city: string
   coordinates: { _lat: Nullable<number>; _long: Nullable<number> }
   rating: Nullable<number>
-  createdAt: string
+  createdAt?: string
   features: Feature[]
 }
 
-export interface InnPayload
-  extends Omit<Inn, 'id' | 'createdAt' | 'features' | 'coordinates' | 'city'> {
+export interface InnFormData extends Omit<Inn, 'features' | 'createdAt'> {
+  features: string[]
+}
+
+export interface InnPayload extends Omit<Inn, 'id' | 'createdAt' | 'features' | 'city'> {
   features: string[]
 }
 

@@ -14,34 +14,40 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import { Tag, Transition, GoogleMapSearchInput } from '..'
 import { InnFeaturesWrapper } from './Form.styles'
-import { InnPayload } from '@/models/Inn.model'
+import { InnFormData } from '@/models/Inn.model'
 import { useFeatures } from '@/hooks/useFeatures'
+import { IGoogleMapSearchInput } from '@/models/Form.model'
 
 interface FormProps {
   open: boolean
   onClose: () => void
 }
 
-const initialFormData: InnPayload = {
+const initialFormData: InnFormData = {
   name: '',
   description: '',
   address: '',
+  city: '',
   rating: 0,
   features: [],
+  coordinates: { _lat: null, _long: null },
 }
 export const Form: FC<FormProps> = ({ open, onClose }) => {
   const theme = useTheme()
 
   const { features, featuresLoading, featuresError } = useFeatures()
-  const [formData, setFormData] = useState<InnPayload>(initialFormData)
+  const [formData, setFormData] = useState<InnFormData>(initialFormData)
   const isChecked = (featureId: string) => formData.features.includes(featureId)
+
+  const handleSelectNameInput = ({ name, address, lat, lng, city }: IGoogleMapSearchInput) =>
+    setFormData({ ...formData, name, address, coordinates: { _lat: lat, _long: lng }, city })
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setFormData({ ...formData, [event.target.name]: event.target.value })
 
   const handleRatingInput = (newRatingValue: number | null) =>
     setFormData({ ...formData, rating: newRatingValue })
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value })
-  }
   const handleChangeCaligariLabel = (event: ChangeEvent<HTMLInputElement>) => {
     if (!!event.target.checked)
       setFormData({ ...formData, features: [...formData.features, event.target.name] })
@@ -104,7 +110,11 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
                 sm={8}
                 md={9}
               >
-                <GoogleMapSearchInput onSelectAddress={() => ''} />
+                <GoogleMapSearchInput
+                  onSelectAddress={(googleMapSearchInputValues: IGoogleMapSearchInput) =>
+                    handleSelectNameInput(googleMapSearchInputValues)
+                  }
+                />
               </Grid>
               <Grid item xs={12} sm={4} md={3}>
                 <Box
