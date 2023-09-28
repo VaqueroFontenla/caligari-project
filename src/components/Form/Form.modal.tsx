@@ -18,6 +18,8 @@ import { InnFeaturesWrapper } from './Form.styles'
 import { InnFormData } from '@/models/Inn.model'
 import { useFeatures } from '@/hooks/useFeatures'
 import { IGoogleMapSearchInput } from '@/models/Form.model'
+import { apiClient, firebaseCollection } from 'utils/firebase'
+import { mapFeaturesToFBDocument } from 'mappers/mapFeaturesToFBDocument'
 
 interface FormProps {
   open: boolean
@@ -71,6 +73,11 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
     event.preventDefault()
     setAddCaligariLoading(true)
     try {
+      const data = {
+        ...formData,
+        features: mapFeaturesToFBDocument(firebaseCollection.featuresCollection, formData.features),
+      }
+      return apiClient.post(firebaseCollection.innsCollection, data)
     } catch (error) {
       setCaligariError((error as Error).message || 'No se ha podido añadir un nuevo Bar Caligari')
     }
