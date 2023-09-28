@@ -1,8 +1,8 @@
 import { Feature, Inn } from '@/models/Inn.model'
 import { mapFBDocumentToFeatures } from 'mappers/mapFBDocumentToFeatures'
-import { apiClient } from 'utils/apiClient'
+import { apiClient } from 'utils/firebase'
 import { apiError } from 'utils/apiError'
-import { firebaseCollection } from 'utils/firebaseCollection'
+import { firebaseCollection } from 'utils/firebase'
 
 export const getInns = async () => {
   try {

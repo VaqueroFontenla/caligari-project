@@ -7,6 +7,7 @@ import {
   getDoc,
   query,
   where,
+  addDoc,
 } from 'firebase/firestore/lite'
 
 const firebaseConfig = {
@@ -20,6 +21,13 @@ const firebaseConfig = {
 const caligari_app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
 const db = getFirestore(caligari_app)
 
+export const firebaseCollection: Record<string, string> = {
+  innsCollection: 'inns',
+  featuresCollection: 'features',
+}
+
+export const setFBDocument = (firebaseCollection: string, id: string) =>
+  doc(db, firebaseCollection, id)
 export const apiClient = {
   get: async <T>(firebaseCollection: string, params?: any): Promise<T> => {
     try {
@@ -33,6 +41,7 @@ export const apiClient = {
       }) as T
       return collectionData
     } catch (error) {
+      console.error('Error al obtener documentos:', error)
       throw error
     }
   },
@@ -43,6 +52,8 @@ export const apiClient = {
       const documentData = { ...documentSnapshot.data(), id: documentSnapshot.id }
       return documentData as T
     } catch (error) {
+      console.error('Error al obtener el documento:', error)
+
       throw error
     }
   },
@@ -51,8 +62,8 @@ export const apiClient = {
     documentIds: string[],
     params?: any
   ): Promise<T> => {
-    const documentosRef = collection(db, firebaseCollection)
-    const queryDocs = query(documentosRef, where('__name__', 'in', documentIds))
+    const documentsRef = collection(db, firebaseCollection)
+    const queryDocs = query(documentsRef, where('__name__', 'in', documentIds))
 
     try {
       const documentsSnapshot = await getDocs(queryDocs)
@@ -67,6 +78,15 @@ export const apiClient = {
       return relatedValues as T
     } catch (error) {
       console.error('Error al obtener documentos relacionados:', error)
+      throw error
+    }
+  },
+  post: async <T>(firebaseCollection: string, data?: any): Promise<T> => {
+    try {
+      const collectionReference = collection(db, firebaseCollection)
+      const newDocumentRef = await addDoc(collectionReference, data)
+      return newDocumentRef as T
+    } catch (error) {
       throw error
     }
   },

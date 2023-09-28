@@ -1,5 +1,5 @@
 import { Inn } from '@/models/Inn.model'
-import { apiClient } from 'utils/apiClient'
+import { apiClient } from 'utils/firebase'
 
 export const mapFBDocumentToFeatures = async (firebaseCollection: string, inn: Inn) => {
   if (inn.hasOwnProperty('features') && Array.isArray(inn['features'])) {

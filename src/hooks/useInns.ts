@@ -20,7 +20,7 @@ export const useInns = () => {
 
   useEffect(() => {
     fetchInns()
-  }, [])
+  }, [fetchInns])
 
   return {
     inns,

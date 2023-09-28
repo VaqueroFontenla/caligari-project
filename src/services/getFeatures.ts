@@ -1,7 +1,6 @@
 import { Feature } from '@/models/Inn.model'
-import { apiClient } from 'utils/apiClient'
+import { apiClient, firebaseCollection } from 'utils/firebase'
 import { apiError } from 'utils/apiError'
-import { firebaseCollection } from 'utils/firebaseCollection'
 
 export const getFeatures = async () => {
   try {

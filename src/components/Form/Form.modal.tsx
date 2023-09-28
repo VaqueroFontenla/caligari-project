@@ -10,6 +10,7 @@ import {
   Box,
   useTheme,
   Button,
+  Alert,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { Tag, Transition, GoogleMapSearchInput } from '..'
@@ -37,6 +38,9 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
 
   const { features, featuresLoading, featuresError } = useFeatures()
   const [formData, setFormData] = useState<InnFormData>(initialFormData)
+  const [addCaligariLoading, setAddCaligariLoading] = useState<boolean>()
+  const [addCaligariError, setCaligariError] = useState<string>()
+
   const isChecked = (featureId: string) => formData.features.includes(featureId)
 
   const handleSelectNameInput = ({ name, address, lat, lng, city }: IGoogleMapSearchInput) =>
@@ -65,7 +69,12 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.dir(formData)
+    setAddCaligariLoading(true)
+    try {
+    } catch (error) {
+      setCaligariError((error as Error).message || 'No se ha podido añadir un nuevo Bar Caligari')
+    }
+    setAddCaligariLoading(false)
   }
 
   return (
@@ -236,6 +245,17 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
                 )}
               </Grid>
             </Grid>
+            {addCaligariError && (
+              <Grid
+                sx={{
+                  my: `${theme.spacing(3)}`,
+                }}
+                item
+                xs={12}
+              >
+                <Alert severity="error">{addCaligariError}</Alert>
+              </Grid>
+            )}
             <Grid
               sx={{
                 display: 'flex',
@@ -250,7 +270,11 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
               <Button variant="outlined" type="button" onClick={handleReset}>
                 Cancelar
               </Button>
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                type="submit"
+                startIcon={addCaligariLoading ? <CircularProgress /> : null}
+              >
                 Añadir Caligari
               </Button>
             </Grid>
