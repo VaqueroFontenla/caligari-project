@@ -37,12 +37,10 @@ const GoogleMapSearchInputComponent: FC<GoogleMapSearchInputProps> = ({ onSelect
       try {
         const results = await getGeocode({ address: description })
         const [geoInfo] = results
-        console.log('geoInfo', geoInfo)
         const { lat, lng } = await getLatLng(geoInfo)
         const city =
           geoInfo.address_components.find((component) => component.types.includes('locality'))
             ?.long_name || ''
-        console.log('city', city)
         onSelectAddress({ name, address: geoInfo.formatted_address, lat, lng, city })
       } catch (error) {
         console.error(`😱 Error:`, error)
@@ -52,13 +50,12 @@ const GoogleMapSearchInputComponent: FC<GoogleMapSearchInputProps> = ({ onSelect
 
   return (
     <Autocomplete
-      noOptionsText={status === 'ZERO_RESULTS' ? 'No hay opciones' : 'Cargando...'}
       disabled={!ready}
       id="name"
       freeSolo
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(option) => option}
-      options={status === 'OK' ? googlePlaces : []}
+      options={googlePlaces}
       onChange={(
         _event: React.SyntheticEvent,
         value: string | google.maps.places.AutocompletePrediction | null

@@ -1,5 +1,13 @@
 import { getApp, getApps, initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs, doc, getDoc } from 'firebase/firestore/lite'
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  query,
+  where,
+} from 'firebase/firestore/lite'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -43,17 +51,22 @@ export const apiClient = {
     documentIds: string[],
     params?: any
   ): Promise<T> => {
-    try {
-      const documentsReference = documentIds.map((documentId) =>
-        doc(db, firebaseCollection, documentId)
-      )
-      const documentsSnapshots = await Promise.all(documentsReference.map(getDoc))
+    const documentosRef = collection(db, firebaseCollection)
+    const queryDocs = query(documentosRef, where('__name__', 'in', documentIds))
 
-      const documentsData = documentsSnapshots
-        .filter((snapshot) => snapshot.exists())
-        .map((snapshot) => ({ ...snapshot.data(), id: snapshot.id }))
-      return documentsData as T
+    try {
+      const documentsSnapshot = await getDocs(queryDocs)
+      const relatedValues: Record<string, string>[] = []
+      documentsSnapshot.forEach((doc) => {
+        relatedValues.push({
+          id: doc.id,
+          ...doc.data(),
+        })
+      })
+
+      return relatedValues as T
     } catch (error) {
+      console.error('Error al obtener documentos relacionados:', error)
       throw error
     }
   },
