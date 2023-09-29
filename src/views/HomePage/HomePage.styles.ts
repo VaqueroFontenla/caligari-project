@@ -34,7 +34,8 @@ export const MobileHomeWrapper = styled(Box, {
         position: absolute; 
         top: 45vh;
         background-color: ${theme.palette.common.white};
-        border-radius: ${theme.spacing(8)};
+        border-top-left-radius: ${theme.spacing(8)};
+        border-top-right-radius: ${theme.spacing(8)};
         padding: ${theme.spacing(8)};
       }
       `
