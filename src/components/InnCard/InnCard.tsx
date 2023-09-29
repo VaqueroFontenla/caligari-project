@@ -1,4 +1,4 @@
-import { Button, Card, CardMedia, Rating, Typography } from '@mui/material'
+import { Button, Card, CardMedia, Rating, Typography, useTheme } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Inn } from '@/models/Inn.model'
 import { CardInfoWrapper, CardMediaWrapper, LabelRatingWrapper } from './InnCard.styles'
@@ -9,6 +9,7 @@ interface InnCardProps {
   inn: Inn
 }
 export const InnCard: React.FC<InnCardProps> = ({ inn }) => {
+  const theme = useTheme()
   const { image, name, rating, address, city } = inn
   const { isVisible, toggle } = useToggle()
   return (
@@ -20,6 +21,7 @@ export const InnCard: React.FC<InnCardProps> = ({ inn }) => {
             height="230"
             image={image || '/images/noCaligariImage.svg'}
             alt={`${name} image`}
+            sx={{ padding: `${image ? 0 : theme.spacing(15)}` }}
           />
           <LabelRatingWrapper>
             <Rating defaultValue={rating || 0} size="small" readOnly />

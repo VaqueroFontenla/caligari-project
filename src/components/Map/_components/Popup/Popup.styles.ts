@@ -37,9 +37,3 @@ export const LabelRatingWrapper = styled(Box)(
     border-radius:  ${theme.spacing(4)};
   `
 )
-
-export const CardInfoWrapper = styled(Box)(
-  ({ theme }) => `
-  padding: ${theme.spacing(2)};
-`
-)

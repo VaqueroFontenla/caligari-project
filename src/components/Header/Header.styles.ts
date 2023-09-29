@@ -5,7 +5,7 @@ export const StyledHeader = styled('header')(
   ({ theme }) => `
     position: fixed;
     top: 0;
-    height: 80px;
+    height: ${theme.spacing(20)};
     width: 100%;
     z-index: 1;
     background-color: ${theme.palette.common.white};

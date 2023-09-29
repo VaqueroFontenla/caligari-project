@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Inn } from '@/models/Inn.model'
-import { StyledPopup, CardMediaWrapper, LabelRatingWrapper, CardInfoWrapper } from './Popup.styles'
+import { StyledPopup, CardMediaWrapper, LabelRatingWrapper } from './Popup.styles'
 import { Box, Button, CardMedia, Rating, Typography, useTheme } from '@mui/material'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { useToggle } from '@/hooks/useToggle'
@@ -20,7 +20,7 @@ export const Popup: FC<MapProps> = ({ inn }) => {
         <CardMediaWrapper>
           <CardMedia component="img" height="120" image={image} alt={`${name} image`} />
           <LabelRatingWrapper>
-            <Rating defaultValue={rating} size="small" readOnly />
+            <Rating defaultValue={rating || 0} size="small" readOnly />
           </LabelRatingWrapper>
         </CardMediaWrapper>
         <Typography variant="body1" fontWeight="bold">

@@ -8,7 +8,6 @@ export const StyledFooter = styled('footer')(
     width: 100%;
     z-index: 1;
     padding: ${theme.spacing(2)};
-    margin-top:${theme.spacing(4)};
     text-align: center;
 `
 )
