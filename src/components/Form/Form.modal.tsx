@@ -80,8 +80,9 @@ export const Form: FC<FormProps> = ({ open, onClose }) => {
       return apiClient.post(firebaseCollection.innsCollection, data)
     } catch (error) {
       setCaligariError((error as Error).message || 'No se ha podido añadir un nuevo Bar Caligari')
+    } finally {
+      setAddCaligariLoading(false)
     }
-    setAddCaligariLoading(false)
   }
 
   return (

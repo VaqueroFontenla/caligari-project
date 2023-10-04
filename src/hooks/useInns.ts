@@ -14,8 +14,9 @@ export const useInns = () => {
       setInns(inns)
     } catch (error) {
       setInnsError(error as Error)
+    } finally {
+      setInnsLoading(false)
     }
-    setInnsLoading(false)
   }, [])
 
   useEffect(() => {

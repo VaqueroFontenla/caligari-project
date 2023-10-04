@@ -14,8 +14,9 @@ export const useFeatures = () => {
       setFeatures(features)
     } catch (error) {
       setFeaturesError(error as Error)
+    } finally {
+      setFeaturesLoading(false)
     }
-    setFeaturesLoading(false)
   }, [])
 
   useEffect(() => {
